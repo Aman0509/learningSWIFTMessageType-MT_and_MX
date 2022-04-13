@@ -269,5 +269,152 @@ exchange permission data between them. Based on that, the sender checks the mess
 
 ![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_3_6.png)
 
+## SWIFT MT Messages - Understanding fields and flows with examples
+
+Now that we understood the required background concept, we are ready to understand the payment messages.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_4_1.png)
+
+What distinguishes Category 1 messages from Category 2 is that it deals with customer payments and not bank to bank payments. So, if either the originator of the payment or the ultimate beneficiary is a retail customer or a corporate, Category 1 messages are used. Whereas Category 2 messages are used when banks need to move money between themselves to settle their own accounts.\
+No underlying customer accounts are involved in such transactions except MT 202 COV and 205 COV. We will see the important Category 1 messages. Along with that, we will also learn in parallel relevant Category 2 and Category 9 messages
+which are usually exchanged in those contacts.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_4_2.png)
+
+### Category 1 Messages with MT 103 Serial and Cover methods
+
+As the name suggests, this is a request to transfer money. Whose money? A customer’s money held in an account at the bank. So using MT 101, a bank itself can request another bank to move money. Or if the customer itself is a member of SWIFT, then the customer can send MT 101 to a bank too. You can recall that we discussed that corporate can become members of the SWIFT network too using SWIFT Score Service.\
+Using SWIFT score, customers can communicate with banks using a select few messages. They don't have access to use all kinds of messages.
+
+Let's understand the use of MT 101 with an example.\
+ABC company holds 2 accounts with Green Bank in the USA. Yellow Bank in India provides payment management service to ABC company. What is meant by that?\
+ABC is a very big company and maintains accounts with several banks. A large number of transactions need to be executed on a daily basis through these accounts. Instead of handling all those by itself, ABC company assigns Yellow Bank to handle all its transactions. So if a company has SWIFT score, it can send a MT 101 to Yellow bank. If it doesn't, then it instructs via email or letter.\
+ABC company instructs Yellow Bank to ask Green Bank to debit my account number, XYZ and credit to beneficiary 1. On the basis of that, Yellow Bank sends MT 101 to Green Bank. On receipt of the MT 101, Green Bank debits ABC's account and credits the beneficiary.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_4_3.png)
+
+In this example, you can see that yellow bank is sending the MT 101 to green bank. It mentions the account details of ABC company to be debited. And also the account details of the beneficiary that the credit has to be made. Now, a single MT 101 can also contain multiple debit instructions. The debit instructions can be from a single debit count or from multiple debit accounts too. All such debit transactions can be included in a single MT 101. For example, you can see yellow bank is instructing green bank for multiple debit transactions. The first portion contains the general information. Next, the account details of the first transaction. And lastly, the account details of the second transaction. Thus, this single MT 101 contains debit instructions of two separate accounts of ABC company and credit to two separate beneficiaries in New York.
+
+|  |  |
+| --- | ----------- |
+| ![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_4_3.png) | ![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_4_5.png) |
+
+Now, let's learn the use of another message here. MT 940 customer statement message. it is a statement of transactions of a customer's account. Many such transactions as the previous example are executed on a daily basis in ABC company's account. So end of day or weekly, green bank sends a MT 940
+to yellow bank with details of all transactions done at ABC's account. This helps in reconciliation.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_4_6.png)
+
+Next, let's understand the use of MT 102 or multiple customer credit transfer.
+How it differs from MT 101?\
+- The first difference is unlike MT 101, this message always contains multiple payment instructions.
+- The second difference is the account debited here is not the customer's account, but the bank's own account held with another bank.
+
+So in the earlier example, if ABC company does not have any account at green bank instead it is yellow bank which has an account. Then yellow bank will send a MT 102 to green bank, asking green bank to debit yellow bank’s account held with it and credit the beneficiary.\
+Next, let's understand the use of two more category 9 messages which are commonly sent in this context.\
+First is MT 900, which is a confirmation of debit. It just sent to confirm a single debit transaction executed in an account. So, once green bank debit yellow bank account, it will send the yellow bank a MT 900 to confirm that the transaction is successful. At EOD or on a weekly basis, all transactions executed are put together and green Bank will send the yellow bank a MT 950,
+which is a statement message.
+
+What is the difference between MT 940 that we discussed earlier and MT 950?
+Notice the names, MT 940 is a customer statement message and MT 950 is a statement message. Earlier you notice, green Banks and the Yellow Bank the statement of ABC's account using 940, ABC being a customer of yellow bank.
+But MT 950 is a statement message sent to the account owner itself. Here, the account owner at green bank is the yellow bank itself. So, ideally a MT 950 message is used to send the statement of a account of yellow bank.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_4_7.png)
+
+Next, let's understand the purpose of MT 103. It is used for a single customer credit transfer. As the name suggests, this message type is sent by or on behalf of the bank of the ordering customer directly or through correspondent
+to the bank of the beneficiary customer to convey a fund transfer instruction.
+Now, there are two methods in which a MT 103 is used:
+- Cover Method
+- Serial Method
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_4_8.png)
+
+<u>**Scenario**</u>
+
+We have an order in customer in the UK who wants to send payment in dollars
+to a beneficiary customer in Brazil. As dollars is not the home currency of the ordering customer nor the beneficiary customer, this payment has to be routed
+through a CSM which works with dollars. 
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_4_9.png)
+
+So, both the UK bank and the Brazil bank need to work with their respective correspondents in the USA to process this payment.\
+How is it done?\
+There are two methods, Cover and Serial.\
+First, let's look into the cover method. In the cover method, two messages are generated by the originating bank. First is a MT 103 message, which acts as an announcement that the funds are coming. This is sent from the originating bank directly to the ultimate beneficiary’s bank. But this message actually does not move the funds. It just informs the beneficiary’s bank that the funds for a particular beneficiary is on the way and provides the name of the corresponding bank through which the funds will be coming. Another message generated is called the MT 202 cover message. This is the message basis on which funds are moved. The originating bank will debit the ordering customer's account and credit its **Nostro** account with its correspondent. Simultaneously, it will generate a MT 202 cover and send it to its correspondent. Once the sender’s correspondent receives the MT 202 cover, it will debit the **Nostro** account
+and make payment to the receiver’s correspondent to the country's CSM.
+Note that sender’s and receiver’s correspondents are in the same country.
+In this example, USA, thus, under the same CSM.\
+Simultaneously, it will inform the receiver’s correspondent about the payment made using another MT 202 cover or any local messaging format prevalently used in that country. This receiver’s correspondent is the bank which holds the **Nostro** account of the ultimate receiver bank. Once it receives the credit in its settlement account through the CSM, it will debit the settlement account and credit the **Nostro** of the receiver bank and send a MT 910 confirmation of credit or a MT 950 statement. The receiver bank will compared the previously received MT 103 announcement and the MT 910 confirmation that it received and finally be the beneficiary. This is how a cover method works.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_4_10.png)
+
+You can see how messages are used for giving information about the movement of the funds and based on that, the actual settlement of funds is made.
+
+Next, the serial method. In the serial method, only one type of message MT 103 is generated. Unlike the cover method where the MT 103 was used as an announcement only and not as the movement of funds. In the serial method, this message alone helps to move the fund. The sender bank sends funds to its correspondent and simultaneously, sends the MT 103 serial to its correspondent.
+Its correspondent debits the Nostro account, and transfers the funds to the intermediary institution, which is the correspondent of the beneficiary bank most of the time. Simultaneously, it sends a second MT 103 to the receiver’s correspondent. The intermediary institution, in its turn, credits the account of the creditor bank and sends a third MT 103. And finally, the credit bank credits that beneficiary's account.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_4_11.png)
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_4_12.png)
+
+**Let's understand these two methods with another examples.**
+
+First, <u>***the cover method***.</u>
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_4_13.png)
+
+ABC Gmbh in Vienna wants to send dollars to DEF company in Amsterdam. ABC's bank is Blue Bank Vienna and DEF’s Bank is Purple Bank Amsterdam. As dollars are not the home currency in Vienna or Amsterdam, the payment must be routed through a cross-border dollar payment system. The blue bank dollar correspondent is red bank, New York, and purple bank’s dollar correspondent is green bank, New York. Blue bank will debit ABC's account and credit blue bank's dollar **Nostro** account with red bank. Then blue bank will generate two messages a MT 103 and a MT 102 cover.
+
+First, let's look into the MT 103 announcement message that blue will send directly to purple bank.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_4_14.png)
+
+The sender is blue bank and the receiver is purple bank. It shows the amount of the credit that is on the way and from whom the payment is coming. Next, it also informs purple bank the respective correspondents in fields 53A and 54A
+through which the payment is coming. Finally, it informs the bank for whom the payment is coming that is the beneficiary customer’s details.\
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_4_15.png)
+
+Next, let's look into the MT 202 cover that is also generated by blue bank.
+The receiver of the message is blue bank's correspondent, that is red bank.
+Notice field 119 which specifically mentions that this MT 202 is a cover message. A new transaction reference number which is unique for this MT 202 cover is generated, but note field 21 related reference. This is the message reference of the MT 103 announcement message. This is included in the MT 202 cover so that these two messages can be related together. The value date and the amount of the payment is mentioned.\
+Next, note the two fields account with the institution and beneficiary institution here, blue bank is saying red bank, debit my Nostro account held with you and credit green bank's account. It also informs red bank the further chain of payment and says that the ultimate beneficiary bank of this payment
+is purple bank.
+
+In the next section, it informs red bank the underlying customer details for which the payment is made. It informs the ordering customer and the beneficiary customer of the payment.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_4_16.png)
+
+Next, what will happen?\
+On receipt of this message, Red bank will debit blue bank’s Nostro account, credit green bank through the CSM and send green bank another MT 202 cover or equivalent local format message. Green bank on receiving the payment will in turn credit purple bank’s Nostro held with it and will send purple bank a MT 910 confirmation of credit. Purple bank on receipt of the MT 910 will compare it with the MT 103 announcement received earlier. It will now be sure that the payment that it was expecting has arrived and credit DEF company if not already credited before.
+
+Here at a glance, you can see how the fields of the MT 103 and MT 202 covers are related.
+-  The receiver of MT 103 becomes the beneficiary institution in field 58A in the MT 202 cover.
+- Field 20, the reference number of MT 103 becomes field 21 or the related reference number of the MT 202 cover.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_4_17.png)
+
+Next, let's see what will happen if the same transaction is done using <u>***this serial method.***</u>
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_4_18.png)
+
+First, blue bank will send the MT 103 to red bank. Let's first look into this MT 103 below.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_4_19.png)
+
+The details of payment amount and value date is provided. The ordering customer detail is given. Next, note the field 56A and 57A, it states the intermediary institution as green bank and the account with the institution as purple bank. Notice that in a serial payment MT 103 field 56A or intermediary institution is used, whereas if you can recall, in the MT 103 used in the cover method, the same green bank was referred in field 54A or receiver’s correspondent. So, keep in mind that in that MT 103 serial message, fields 56A and 57A are used. Whereas in a MT 103 cover message, fields 53A and 54A are used.
+
+Next, let's look into the MT 103 message that red bank send to green bank.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_4_20.png)
+
+You can see that there is a difference of ten dollars between the actual payment amount and that instructed amount, that's the amount red bank charges to transfer the payment. It informs green bank that the ordering customer ABC Gmbh has initiated the transfer through blue bank. Also, the account with the institution field gives green bank the information where to transmit this payment further down the payment chain.
+
+On receipt of this message, green bank creates the last MT 103 and sends to the beneficiary institution, which is purple bank. In this message, it informs from which customer the payment is received and the ordering or originating bank name. It informs to which beneficiary purple bank should give this credit. Note that the name of the bank from which green bank has received this payment comes in field 72. Also green bank itself deducts ten dollars from the proceeds and the details of the two charges deducted are given in the message.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_4_21.png)
+
+On receipt of this message, purple bank will debit its Nostro with green bank and credit to DEF Company and that payment process gets completed.
+
+Note that in the cover method, the MT 202 cover had a related reference of the underlying MT 103. But interestingly, in the serial method, each MT 103 is not referring to the previous MT 103.
+
 ## References
 - [SWIFT Message Types - MT and MX ISO 20022 - An Overview (Udemy Course)](https://www.udemy.com/course/swift-message-types-in-banking/)
