@@ -416,5 +416,81 @@ On receipt of this message, purple bank will debit its Nostro with green bank an
 
 Note that in the cover method, the MT 202 cover had a related reference of the underlying MT 103. But interestingly, in the serial method, each MT 103 is not referring to the previous MT 103.
 
+### Category 2 Messages
+
+As discussed earlier, category 2 messages are used for funds transfer between banks themselves and not for customers.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_5_1.png)
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_5_2.png)
+
+<u>**MT 200**</u>
+
+It is for financial institution transfer for its own account, meaning it is used to transfer funds between a bank's own two accounts. So, suppose bank A has two accounts, one in bank one and another in bank two. It will instruct bank one using MT 200 to send the money to its own account in bank two. Both the accounts should be maintained in the same currency and it can be used for cross-border payments.
+
+<u>**MT 201**</u>
+
+MT 201 or multiple financial institution transfer for its own account is the same thing, but it contains multiple transactions. Here also, the two accounts should be of same currency. So conceptually, you can group these two messages together.
+
+<u>**MT 202**</u>
+
+MT 202 or general financial institution transfer is used to transfer money to the account of another bank, but maybe send us on account also. The account maybe of different currencies. So, bank A wants to send money to bank B. It will use MT 202. It can contain a single transaction and is used for cross-border payments.
+
+<u>**MT 203**</u>
+
+MT 203 is used for the same purpose as MT 202, except it contains multiple transactions.
+
+<u>**MT 205**</u>
+
+MT 205 is the same as MT 202, containing a single transaction, except it is used for domestic transfer and not cross-border transfers.
+
+MT 202 cover and MT 205 cover are the only two messages of category two which are used in case of underlying customer transactions. As we have learned earlier, MT 202 cover is used along with MT 103 cover payment. It is used for cross-border payments. Similarly, MT 205 cover is used along with MT 103 cover payments for domestic payments. MT 204 is used for direct debit transactions.
+
+**Examples**
+
+<u>**MT 200**</u>
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_5_3.png)
+
+Here, Blue Bank at Zurich calls account at black bank and purple bank at Amsterdam. It sends an empty 200 to black bank requesting it to transfer its money to its own account at purple bank.\
+Let's look into the message.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_5_4.png)
+
+It instructs black bank to account for euro one million and credit to its own account at purple bank. Note this here that no account numbers are given. This is usually because there is only one account at each bank. Black bank may in turn send purple bank MT 205 or message in some local format other than Swift, instructing the credit. Purple bank may in turn send a MT 910 or 950 to confirm that the transaction was successfully executed.
+
+<u>**MT 201**</u>
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_5_5.png)
+
+When instead of a single transfer, blue bank needs to do multiple transfers in its own account held at various banks by debiting its account at black bank, then it will use MT 201. You can see in this example, blue bank holds three accounts at banks located at three different places. In such cases, it will use MT 201 to instruct black bank to transfer the funds.
+
+<u>**MT 202**</u>
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_5_6.png)
+
+A MT 202 is used to order the movement of funds from one bank account to another bank account. It should not be used to transfer funds between banks where there is an underlying customer transaction. For example, here, blue bank at Zurich needs to make payment in euro to bank A at New York. The euro correspondent for blue bank is black bank at Amsterdam and the euro correspondent of bank A is Silver bank at Amsterdam. Blue bank sends an MT 202 to black bank.\
+Let's look into the message.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_5_7.png)
+
+The details of the date and the amount of the payment is given. Blue bank asks black bank to debit its Nostro account and pay Silver bank mentioned in account with institution. It also mentions the further change of the payment and says that the ultimate beneficiary institution is bank A at New York.
+
+<u>**MT 203**</u>
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_5_8.png)
+
+MT 203 is used when multiple transfer instructions are to be given to a bank. Here, blue bank not only needs to make euro payment to bank but also to bank B at London and bank C at New York. The respective euro correspondents of Bank A,B and C are silver, gold and diamond banks at Amsterdam. So, the bank will use a MT 203 to instruct its correspondent black bank to debit its Nostro and make payments to banks A, B and C through their respective correspondents. Let's look into the message.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_5_9.png)
+
+You can see here in the message that blue bank is sender, black bank is the receiver. There are a total of three transactions. The sum of all three is provided here. The value date at which the credits are to be executed is given.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_5_10.png)
+
+Next, the details of each transaction is provided. You can see that bank A, B and C are provided under field 58A beneficiary institution and their respective correspondence are provided the field 57A account with institution.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_5_11.png)
+
 ## References
 - [SWIFT Message Types - MT and MX ISO 20022 - An Overview (Udemy Course)](https://www.udemy.com/course/swift-message-types-in-banking/)
