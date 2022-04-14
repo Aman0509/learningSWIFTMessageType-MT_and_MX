@@ -541,5 +541,25 @@ MT 950 message type is set by an account servicing institution to an account own
 
 ![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_6_8.png)
 
+### SWIFT GPA Messages/ Possible Duplicate Emission(PDE/PDM)/ Message Retrieval
+
+All this while we were discussing Swift Fin messages, but we learned earlier that there is another kind of message which are used for administration and control of the Fin messages. These are called GPA or general purpose application messages.
+
+These are of two types, ***Service Messages and System Messages.***
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_7_1.png)
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_7_2.png)
+
+There are system messages which are identified by three digit numbering scheme under the MT category zero.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_7_3.png)
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_7_4.png)
+
+There are also message retrieval options in Swift FIN.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_7_5.png)
+
 ## References
 - [SWIFT Message Types - MT and MX ISO 20022 - An Overview (Udemy Course)](https://www.udemy.com/course/swift-message-types-in-banking/)
