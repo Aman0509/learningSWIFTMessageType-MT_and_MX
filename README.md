@@ -575,7 +575,7 @@ To address these shortcomings, SWIFT GPI was introduced.
 
 ![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_8_1.png)
 
-###  SWIFT GPI (Global Payments Innovation)
+### SWIFT GPI (Global Payments Innovation)
 
 The main functionality of GPI is the traceability of a SWIFT message. The Swift GPI products suit consists of three elements, GPI tracker, GPI Observer and GPI directory.
 
@@ -609,6 +609,40 @@ Using the GPS tracker interface, this whole payment process can be monitored rea
 ![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_8_6.png)
 
 ![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_8_7.png)
+
+### Latest
+
+In this section, we will quickly see the latest innovations in SWIFT added recently.
+
+<u>**GPI Instant**</u>
+
+The most relevant of the latest advancements in transactional services of SWIFT is GPI Instant.\
+GPI Instant is a service by SWIFT, which enables consumers and businesses to make instant payments across borders around the globe via their financial institutions. It combines GPI with domestic instant payments to make instant cross-border payments.\
+LLOYDS Banking Group in the UK was the first to adopt this service, and in India, ICICI Bank became the second bank globally to tie up with SWIFT for GPI instant service.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_9_1.png)
+
+Now, let's see some of the latest pre and post transactional services offered by SWIFT.
+
+<u>**Payment Pre-validation**</u>
+
+Incorrect or missing information about the beneficiary when a payment is initiated is a major cause of delays or rejects in payments. That's where the payment pre-validation service comes to use. It allows a sending bank to confirm account details via an API with the receiving bank from the very beginning of the process,so that any data or account problems can be identified
+and corrected before the payment is sent.\
+Initiating banks will be able to verify if the data in their payment instructions is correct and matches the specific requirements at the destination country before their transactions are initiated. This will allow banks to remedy any inaccurate or missing information instantly reducing delays and costs.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_9_2.png)
+
+<u>**Case Resolution**</u>
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_9_3.png)
+
+SWIFT case resolution service uses the GPI tracker to follow inquiry requests anywhere in the transaction journey and record related interbank communications in an audit trail. This innovative service significantly shortens resolution times, smartly routing and quality requests to the right agent to ensure a timely follow on.
+
+<u>**Stop and Recall**</u>
+
+SWIFT stop and recall service is a game changer for detected frauds or erroneous payments. This service harnesses the power of the SWIFT GPI tracker to enable you to rapidly hold payments and recall funds to the sender. When you suspect a payment has been made an error or may be fraudulent, you can send a stop and recall request to the tracker. And in-flight transaction will automatically be stopped via the network, preventing any further processing. After stopping the payment, the institution can reel out the funds back to you before it's too late.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_9_4.png)
 
 ## References
 - [SWIFT Message Types - MT and MX ISO 20022 - An Overview (Udemy Course)](https://www.udemy.com/course/swift-message-types-in-banking/)
