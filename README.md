@@ -492,5 +492,54 @@ Next, the details of each transaction is provided. You can see that bank A, B an
 
 ![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_5_11.png)
 
+### Category 9 Messages
+
+The four main Category nine messages are MT 900: confirmation of debit, MT 910: confirmation of credit, and MT 940 and 950 statements.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_6_1.png)
+
+<u>**MT 900: Confirmation of Debit**</u>
+
+This is a confirmation of debit sent by an account servicing institution to an account owner. It is used to notify the account owner of an entry which has been debited to its account. The entry will be further confirmed by a statement MT 940 or 950.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_6_2.png)
+
+For example, bank B in Zurich requests bank in New York to pay US dollars to bank D in Berlin via its correspondent bank C in New York. After debiting the USD Nostro of bank B, bank A will send a confirmation of debit using a MT 900.\
+The message will look like this. 
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_6_3.png)
+
+The related reference field contains the reference of the credit message that bank A has sent to banks C. Field 25 shows the account that was debited, field 32, it contains the value added and that amount of the transaction.
+
+<u>**MT 910: Confirmation of Credit**</u>
+
+MT 910 is just the opposite. It's a confirmation of credit sent by an account servicing institution to an account owner. It is used to notify the account owner of an entry which has been credited to its account.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_6_4.png)
+
+For example, a bank in Vienna wants to make payment in USD to bank in Amsterdam.
+The payment is routed through the senders and receivers correspondents at New York. Once bank C which is the receivers correspondent receives the credit in bank D’s Nostro account, it sends a MT 910 to bank D.\
+The message will look like this.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_6_5.png)
+
+The sender is bank C, the receiver is bank D. The related reference number will contain the reference number of the credit message that bank C received from bank B. It informs the account that the credit has been made. It also says which bank originated or ordered the payment under field 52A that is bank A and through which bank bank C has received the payment that is bank B under field 56A.
+
+<u>**MT 940: Customer Statement Message**</u>
+
+MT 940 is a customer statement message meaning statement of a customer's account sent to the account holding bank. It is used to transmit detailed information about all the entries booked to the account.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_6_6.png)
+
+For example, ABC company has an account with bank A in New York and bank B in London provides payment management service to ABC Company. Bank A sends daily or weekly account statement of ABC to bank B, which is authorized by ABC to receive such statements.
+
+<u>**MT 950: Customer Statement Message**</u>
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_6_7.png)
+
+MT 950 message type is set by an account servicing institution to an account owner itself. It is used to transmit detailed information about all entries whether or not caused by a swift message booked to the account. So, if bank B has an account at bank A, then bank A and will send a MT 950 to bank B.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_6_8.png)
+
 ## References
 - [SWIFT Message Types - MT and MX ISO 20022 - An Overview (Udemy Course)](https://www.udemy.com/course/swift-message-types-in-banking/)
