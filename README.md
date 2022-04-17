@@ -734,5 +734,80 @@ There are 23 business areas which will be covered by MX messages.
 
 >Of all these, PAIN, PACS and CAMT, that is messages related to payments are targeted to be migrated by 2025.
 
+### MT to MX Messages - What are the changes?
+
+Now, what is changing in MX messages?
+
+Though, the whole transition from MT to MX messages is happening on the backend,there are some changes which everyone must be aware of.
+
+- The first change is the terminology of the message specification components:
+    - The Fields will be called Elements.
+    - The Format will be called DataType.
+    - The Network Validated Rule will be called Cross Element Complex Rule and likewise.
+
+- The next change is the terminologies of the parties in the message.
+    - Banks are called agents.
+    - The Ordering Customer is called Debtor.
+    - The beneficiary customer is called the Creditor.
+    - The message sender is the Instructing agent
+    - The message receiver, the Instructed agent.
+    - ***There are also some new parties added like ultimate debtor, ultimate creditor, initiating party, etc.***
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_11_1.png)
+
+Let's understand the changes in naming with below two transactions side by side.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_11_2.png)
+
+PACS 008 is the MX version of the MT 103. Notice how the same parties are referred differently here.\
+In PACS 008, we have debtor, debtor’s agent, intermediary agent 1, intermediary agent 2, creditor's agent and creditor.
+
+**This brings us to the next change, the next change is the naming convention of the messages itself.**\
+Unlike the three digit codes in MT, MX message names have four sections separated by dots.
+
+- The first section, consisting of four alphabet, denotes the broader business area. Here, PACS means Payment, Clearing and Settlement which is equivalent to Category 1 of MTs.
+
+- The next three characters denote the message functionality. Here, 008 denotes FI to FI customer credit transfer.
+
+- The next three numbers denote the variant. The role of the variant is to accommodate variations of the message to address specific market or business requirements. Recall our earlier discussion where we discussed that unlike MT messages which cannot be altered depending on specific market requirements, MX messages can be.
+
+- The last two digits denotes the version of the message, recall that MX messages are regularly updated to include more options and functions.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_11_3.png)
+
+**The next is the change in the message structure itself.**
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_11_4.png)
+
+- The structure of the SWIFT message is also changed. The heart of the change is the business message that remains capsuled inside an envelope layer.
+
+- The business message consist of two part, the business application header and the main message itself.
+
+- The business application header gathers together in one place the data about the message such as which organization has sent the business message, which organizations should be receiving it, the identity of the message itself, a reference for the message and so on. Not only that, the character sets permitted in MX are also broader than the permitted in MT.
+
+- All these changes put together ultimately give access to more structured data to both banks and the end customers.\
+For example, in MX messages in below image, there is a separate element for capturing each detail of the customer record. So, not only there is no  information loss, but since each information is categorized under each head, if you need to retrieve a specific information, suppose the street name, you can do that instantaneously without any manual intervention. Thereby making it easy for ***Straight Through Processing***. For your information, to put simply, Straight Through Processing is a way of processing messages where the maximum processing can be automated by systems and requires minimum human intervention.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_11_5.png)
+
+- On the other hand, notice the MT message. Neither the free format nor the structured format serves the above purpose. In the free format, though all the information is present, it comes as a continuous text. And thus, individual elements cannot be retrieved without human intervention. The structured message tries to capture each detail separately, but in that process exceeds the maximum character length and the passport number info gets truncated.
+
+This brings to another important advantage of MX messages.
+> Many times, MT messages get stalled in the payment chain due to false positives in various sanction rules and blacklists. For example, if XYZ company is a blacklisted entity and in the customer details, there is a street name XYZ street, this will trigger a false positive, but it's difficult to assess that it is actually a false positive without human intervention. This result in considerable delay.
+
+This is what SWIFT refers to,
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_11_6.png)
+
+***Now, the next question that's going to come to your mind is how do these two kind of messages coexist till the full transition to MX happens?***
+
+SWIFT has defined translation rules to overcome that. There are two broader scenarios possible, messages flowing from a MT supporting interface to a MX supporting interface. In that case, the translation is easier as the messages will be mapped to a much richer or more data capable format.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_11_7.png)
+
+What is challenging is the other way around, when a richer data loaded MX message needs to be accommodated in a relatively limited MT message. There are various rules designed by SWIFT to make the translation as seamlessly as possible. But some data truncation may occur, which will be denoted by a plus sign.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_11_8.png)
+
 ## References
 - [SWIFT Message Types - MT and MX ISO 20022 - An Overview (Udemy Course)](https://www.udemy.com/course/swift-message-types-in-banking/)
