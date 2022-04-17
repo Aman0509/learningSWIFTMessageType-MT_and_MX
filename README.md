@@ -644,5 +644,95 @@ SWIFT stop and recall service is a game changer for detected frauds or erroneous
 
 ![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_9_4.png)
 
+## SWIFT ISO 20022 MX messages
+
+### Need for MX Messages and the three layers of MX Messages
+
+Before we go to what our ISO 20022 MX messages, let's first understand the need for such a standard.
+
+<u>**Various messaging standards co-exist**</u>
+
+Throughout the world, various messaging standards coexist and most of the times a single transaction needs to go through multiple messaging standards, resulting in loss of data delay and more manual intervention and thereby higher costs and inefficiency.
+
+<u>**Redundancy of terminologies**</u>
+
+There is redundancy of terminologies used in these messaging standards which make interoperability very difficult. For example, an entity making payment has different names - originator, Ordering Customer or Debtor. There is no standardized common glossary which can be referred to remove this ambiguity.
+
+<u>**Limited Maximum Character Length**</u>
+
+The current MT messaging standard has its own limitations that the maximum character length allowed in each message is very limited. This results in truncation of some required information.\
+For example, a company A instructs his bank to please pay company B ten thousand dollars for invoice 123 and indicate a difference of USD 200 with the requested amount due to non-delivery of one article. There is no place to include such information in the current MT standard.
+
+<u>**Limitation in use**</u>
+
+There are limitations in use as well. For example, current MT messages do not support card payment transactions. Also, there is no option for mandate creation for direct debit transactions.\
+Direct debit transaction work on the basis of mandates. For example, if you have an electricity bill that you need to pay each month, instead of actively paying it on each month, you set a debit mandate with your bank and service provider to automatically deduct the amount from your account each month. Such type of transactions are called direct debit and cannot be executed without previously received mandates. In current SWIFT MTs, there is no provision to create such mandates. It assumes that the mandate already exists when direct debit transactions are processed.
+
+Also exception and query handling options are very limited. There are only n95 and n96 messages, but exception handling requires more granular data to make it more effective and faster.
+
+<u>**Rigid Structure**</u>
+
+The structure of MT messages is rigid for each message and cannot be altered depending on specific market or business requirements.\
+ISO 20022 MX messages address all these shortcomings and offer more.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_10_1.png)
+
+The main differentiator of MX messages is that there is distinct separation between the business and the way it is represented in a message that is the syntax. To understand that, let's see how ISO 20022 messages are designed.
+
+It is designed in three layers. The top layer provides the key business processes and concepts. The middle layer provides logical messages or message models, and the bottom layer deals with syntax.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_10_2.png)
+
+<u>**Top Layer - Business Processes and Concepts **</u>
+
+the ISO 20022 methodology starts with the creation of the business model. To put simply, this is the definition of the activity or the business process. The business rules and the actors involved in that activity and the business information required in order for that activity to take place.\
+The business information is organized into business components containing business elements.
+
+For example, when looking at the processes involved in a credit transfer, key notions such as debtor that is a party that pays, creditor that is the money receiver, data agent that is the bank of the data and creditor agent that is the bank of the creditor and payment were identified.\
+Each of these components have further details.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_10_3.png)
+
+<u>**Middle Layer - Logical Messages or Messages Models**</u>
+
+Using these business concepts, ISO 20022 then defines logical messages or message orders, which is the middle layer.\
+A logical message is a description of all the information that is needed to perform a specific business activity independent of Syntax. It is composed of message components organized enough hierarchical structure.
+
+***A key feature of ISO 20022 is the ability to reuse business and message components across all messages. Whether the message is a credit transfer or a credit card payment, a security’s or foreign exchange transaction, the component Postal Address can be used to express a party or financial institutions address where appropriate. Individual elements such as interbank settlement amount and interbank settlement date can also be reused.***
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_10_4.png)
+
+<u>**Bottom Layer - Syntax**</u>
+
+The Syntax of the message comes last and forms the bottom layer.\
+Syntax is a physical representation of the logical message. The syntax is a format in which the information in a message is structured. Unless the reader understands a specific syntax, it will not be possible to understand the message content.
+
+MX messages use XML syntax. XML is an international open standard and it provides the option to include much more data in a easy and structured manner.\
+***But though XML is used, the beauty of mixed messages is because of keeping the three layers separate conceptually, it has the ability to utilize any other syntax if required in a future without losing the main conceptual components. This is the main advantage of MX messages compared to current MT messages.***
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_10_5.png)
+
+This is how XML message will look like:
+
+```
+<address>
+<number>1</number>
+<street>Short Lane</street>
+<city>London</city>
+</address>
+```
+
+There are more than 320 messages covering payments, securities, trade services, foreign exchange, cards and more than 20 submitting organizations besides SWIFT which has come up with the message requirements. These messages are built on strict business justifications and review process, leading to new versions of the messages.
+
+>In 2018, the global financial community agreed to migrate from the MT payment message standard to ISO 20022 and the move will begin from November 2022 And the coexistence of MT and MX messages will run till November 2025.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_10_6.png)
+
+There are 23 business areas which will be covered by MX messages.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_10_7.png)
+
+>Of all these, PAIN, PACS and CAMT, that is messages related to payments are targeted to be migrated by 2025.
+
 ## References
 - [SWIFT Message Types - MT and MX ISO 20022 - An Overview (Udemy Course)](https://www.udemy.com/course/swift-message-types-in-banking/)
