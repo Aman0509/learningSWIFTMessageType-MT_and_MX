@@ -159,14 +159,14 @@ Each message is denoted using three digits.
 
 Now, to use these different types of messages correctly, SWIFT also provides some rules and guidelines to structure the messages. There are four kinds of rules and guidelines for structuring SWIFT messages.
 
-<u>**1. MT Network Validated Rules (NVR)**</u>
+<u><strong>1. MT Network Validated Rules (NVR)</strong></u>
 
 Network Validated Rules are rules for which an error code is defined in SWIFT. When the rules specified affect more than one field in the message, thus placing a condition on one of the field specified, they are called CN or conditional rules. Below is the example of a NVR for a MT 103 message which is the message format used for customer credit transfer between banks. You can see how presence and absence of fields are dependent on each other. And if the rule is not followed, an error will be thrown by the software and you can't proceed
 without rectifying that error.
 
 ![Alt](other/images/NVR.png)
 
-<u>**2. MT Usage Rules**</u>
+<u><strong>2. MT Usage Rules</strong></u>
 
 Usage rules are not validated on the network, meaning rules for which no area code is defined but are still mandatory for the correct usage of the message.
 
@@ -177,13 +177,13 @@ What the rule is trying to say is in the current method of customer payment, two
 in another field of the MT 202 COV. Now that this is actually done on not, SWIFT has no method to check for itself because SWIFT has no way to compare
 two different messages automatically and generate any warning or error. ***That's why SWIFT has designed usage rules such as these to educate the user of the correct usage of each message.***
 
-<u>**3. MT Guidelines**</u>
+<u><strong>3. MT Guidelines</strong></u>
 
 Guidelines are neither validated on the network nor are mandatory for the correct usage of the message. They basically concern group practices and can affect more than one field in a message or more than one SWIFT message.
 
 ![Alt](other/images/MT_guidelines.png)
 
-<u>**4. MT market practice rules**</u>
+<u><strong>4. MT market practice rules</strong></u>
 
 Market practice rules, as the name suggests, are a set of rules which are usually in practice or prevalent in the market. For example, the payments market practice group, or PMPG, is an independent body of payments subject matter experts from Asia Pacific, Europe and North America. It has published a set of market practice rules for category 2 messages proposing best practices and recommendations of structuring such messages.
 
@@ -372,7 +372,7 @@ Now, there are two methods in which a MT 103 is used:
 
 ![Alt](other/images/module_4_8.png)
 
-<u>**Scenario**</u>
+<u><strong>Scenario</strong></u>
 
 We have an order in customer in the UK who wants to send payment in dollars
 to a beneficiary customer in Brazil. As dollars is not the home currency of the ordering customer nor the beneficiary customer, this payment has to be routed
@@ -402,7 +402,7 @@ Its correspondent debits the Nostro account, and transfers the funds to the inte
 
 **Let's understand these two methods with another examples.**
 
-First, <u>***the cover method***.</u>
+First, <u><strong><em>the cover method.</em></strong></u>
 
 ![Alt](other/images/module_4_13.png)
 
@@ -413,7 +413,7 @@ First, let's look into the MT 103 announcement message that blue will send direc
 ![Alt](other/images/module_4_14.png)
 
 The sender is blue bank and the receiver is purple bank. It shows the amount of the credit that is on the way and from whom the payment is coming. Next, it also informs purple bank the respective correspondents in fields 53A and 54A
-through which the payment is coming. Finally, it informs the bank for whom the payment is coming that is the beneficiary customer’s details.\
+through which the payment is coming. Finally, it informs the bank for whom the payment is coming that is the beneficiary customer’s details.
 
 ![Alt](other/images/module_4_15.png)
 
@@ -436,7 +436,7 @@ Here at a glance, you can see how the fields of the MT 103 and MT 202 covers are
 
 ![Alt](other/images/module_4_17.png)
 
-Next, let's see what will happen if the same transaction is done using <u>***this serial method.***</u>
+Next, let's see what will happen if the same transaction is done using <u><strong><em>this serial method.</em></strong></u>
 
 ![Alt](other/images/module_4_18.png)
 
@@ -468,23 +468,23 @@ As discussed earlier, category 2 messages are used for funds transfer between ba
 
 ![Alt](other/images/module_5_2.png)
 
-<u>**MT 200**</u>
+<u><strong>MT 200</strong></u>
 
 It is for financial institution transfer for its own account, meaning it is used to transfer funds between a bank's own two accounts. So, suppose bank A has two accounts, one in bank one and another in bank two. It will instruct bank one using MT 200 to send the money to its own account in bank two. Both the accounts should be maintained in the same currency and it can be used for cross-border payments.
 
-<u>**MT 201**</u>
+<u><strong>MT 201</strong></u>
 
 MT 201 or multiple financial institution transfer for its own account is the same thing, but it contains multiple transactions. Here also, the two accounts should be of same currency. So conceptually, you can group these two messages together.
 
-<u>**MT 202**</u>
+<u><strong>MT 202</strong></u>
 
 MT 202 or general financial institution transfer is used to transfer money to the account of another bank, but maybe send us on account also. The account maybe of different currencies. So, bank A wants to send money to bank B. It will use MT 202. It can contain a single transaction and is used for cross-border payments.
 
-<u>**MT 203**</u>
+<u><strong>MT 203</strong></u>
 
 MT 203 is used for the same purpose as MT 202, except it contains multiple transactions.
 
-<u>**MT 205**</u>
+<u><strong>MT 205</strong></u>
 
 MT 205 is the same as MT 202, containing a single transaction, except it is used for domestic transfer and not cross-border transfers.
 
@@ -492,7 +492,7 @@ MT 202 cover and MT 205 cover are the only two messages of category two which ar
 
 **Examples**
 
-<u>**MT 200**</u>
+<u><strong>MT 200</strong></u>
 
 ![Alt](other/images/module_5_3.png)
 
@@ -503,13 +503,13 @@ Let's look into the message.
 
 It instructs black bank to account for euro one million and credit to its own account at purple bank. Note this here that no account numbers are given. This is usually because there is only one account at each bank. Black bank may in turn send purple bank MT 205 or message in some local format other than Swift, instructing the credit. Purple bank may in turn send a MT 910 or 950 to confirm that the transaction was successfully executed.
 
-<u>**MT 201**</u>
+<u><strong>MT 201</strong></u>
 
 ![Alt](other/images/module_5_5.png)
 
 When instead of a single transfer, blue bank needs to do multiple transfers in its own account held at various banks by debiting its account at black bank, then it will use MT 201. You can see in this example, blue bank holds three accounts at banks located at three different places. In such cases, it will use MT 201 to instruct black bank to transfer the funds.
 
-<u>**MT 202**</u>
+<u><strong>MT 202</strong></u>
 
 ![Alt](other/images/module_5_6.png)
 
@@ -520,7 +520,7 @@ Let's look into the message.
 
 The details of the date and the amount of the payment is given. Blue bank asks black bank to debit its Nostro account and pay Silver bank mentioned in account with institution. It also mentions the further change of the payment and says that the ultimate beneficiary institution is bank A at New York.
 
-<u>**MT 203**</u>
+<u><strong>MT 203</strong></u>
 
 ![Alt](other/images/module_5_8.png)
 
@@ -542,7 +542,7 @@ The four main Category nine messages are MT 900: confirmation of debit, MT 910: 
 
 ![Alt](other/images/module_6_1.png)
 
-<u>**MT 900: Confirmation of Debit**</u>
+<u><strong>MT 900: Confirmation of Debit</strong></u>
 
 This is a confirmation of debit sent by an account servicing institution to an account owner. It is used to notify the account owner of an entry which has been debited to its account. The entry will be further confirmed by a statement MT 940 or 950.
 
@@ -555,7 +555,7 @@ The message will look like this.
 
 The related reference field contains the reference of the credit message that bank A has sent to banks C. Field 25 shows the account that was debited, field 32, it contains the value added and that amount of the transaction.
 
-<u>**MT 910: Confirmation of Credit**</u>
+<u><strong>MT 910: Confirmation of Credit</strong></u>
 
 MT 910 is just the opposite. It's a confirmation of credit sent by an account servicing institution to an account owner. It is used to notify the account owner of an entry which has been credited to its account.
 
@@ -569,7 +569,7 @@ The message will look like this.
 
 The sender is bank C, the receiver is bank D. The related reference number will contain the reference number of the credit message that bank C received from bank B. It informs the account that the credit has been made. It also says which bank originated or ordered the payment under field 52A that is bank A and through which bank bank C has received the payment that is bank B under field 56A.
 
-<u>**MT 940: Customer Statement Message**</u>
+<u><strong>MT 940: Customer Statement Message</strong></u>
 
 MT 940 is a customer statement message meaning statement of a customer's account sent to the account holding bank. It is used to transmit detailed information about all the entries booked to the account.
 
@@ -577,7 +577,7 @@ MT 940 is a customer statement message meaning statement of a customer's account
 
 For example, ABC company has an account with bank A in New York and bank B in London provides payment management service to ABC Company. Bank A sends daily or weekly account statement of ABC to bank B, which is authorized by ABC to receive such statements.
 
-<u>**MT 950: Customer Statement Message**</u>
+<u><strong>MT 950: Customer Statement Message</strong></u>
 
 ![Alt](other/images/module_6_7.png)
 
@@ -623,7 +623,7 @@ To address these shortcomings, SWIFT GPI was introduced.
 
 The main functionality of GPI is the traceability of a SWIFT message. The Swift GPI products suit consists of three elements, GPI tracker, GPI Observer and GPI directory.
 
-<u>**GPI Tracker**</u>
+<u><strong>GPI Tracker</strong></u>
 
 ![Alt](other/images/module_8_2.png)
 
@@ -658,7 +658,7 @@ Using the GPS tracker interface, this whole payment process can be monitored rea
 
 In this section, we will quickly see the latest innovations in SWIFT added recently.
 
-<u>**GPI Instant**</u>
+<u><strong>GPI Instant</strong></u>
 
 The most relevant of the latest advancements in transactional services of SWIFT is GPI Instant.\
 GPI Instant is a service by SWIFT, which enables consumers and businesses to make instant payments across borders around the globe via their financial institutions. It combines GPI with domestic instant payments to make instant cross-border payments.\
@@ -668,7 +668,7 @@ LLOYDS Banking Group in the UK was the first to adopt this service, and in India
 
 Now, let's see some of the latest pre and post transactional services offered by SWIFT.
 
-<u>**Payment Pre-validation**</u>
+<u><strong>Payment Pre-validation</strong></u>
 
 Incorrect or missing information about the beneficiary when a payment is initiated is a major cause of delays or rejects in payments. That's where the payment pre-validation service comes to use. It allows a sending bank to confirm account details via an API with the receiving bank from the very beginning of the process,so that any data or account problems can be identified
 and corrected before the payment is sent.\
@@ -676,13 +676,13 @@ Initiating banks will be able to verify if the data in their payment instruction
 
 ![Alt](other/images/module_9_2.png)
 
-<u>**Case Resolution**</u>
+<u><strong>Case Resolution</strong></u>
 
 ![Alt](other/images/module_9_3.png)
 
 SWIFT case resolution service uses the GPI tracker to follow inquiry requests anywhere in the transaction journey and record related interbank communications in an audit trail. This innovative service significantly shortens resolution times, smartly routing and quality requests to the right agent to ensure a timely follow on.
 
-<u>**Stop and Recall**</u>
+<u><strong>Stop and Recall</strong></u>
 
 SWIFT stop and recall service is a game changer for detected frauds or erroneous payments. This service harnesses the power of the SWIFT GPI tracker to enable you to rapidly hold payments and recall funds to the sender. When you suspect a payment has been made an error or may be fraudulent, you can send a stop and recall request to the tracker. And in-flight transaction will automatically be stopped via the network, preventing any further processing. After stopping the payment, the institution can reel out the funds back to you before it's too late.
 
@@ -694,27 +694,27 @@ SWIFT stop and recall service is a game changer for detected frauds or erroneous
 
 Before we go to what our ISO 20022 MX messages, let's first understand the need for such a standard.
 
-<u>**Various messaging standards co-exist**</u>
+<u><strong>Various messaging standards co-exist</strong></u>
 
 Throughout the world, various messaging standards coexist and most of the times a single transaction needs to go through multiple messaging standards, resulting in loss of data delay and more manual intervention and thereby higher costs and inefficiency.
 
-<u>**Redundancy of terminologies**</u>
+<u><strong>Redundancy of terminologies</strong></u>
 
 There is redundancy of terminologies used in these messaging standards which make interoperability very difficult. For example, an entity making payment has different names - originator, Ordering Customer or Debtor. There is no standardized common glossary which can be referred to remove this ambiguity.
 
-<u>**Limited Maximum Character Length**</u>
+<u><strong>Limited Maximum Character Length</strong></u>
 
 The current MT messaging standard has its own limitations that the maximum character length allowed in each message is very limited. This results in truncation of some required information.\
 For example, a company A instructs his bank to please pay company B ten thousand dollars for invoice 123 and indicate a difference of USD 200 with the requested amount due to non-delivery of one article. There is no place to include such information in the current MT standard.
 
-<u>**Limitation in use**</u>
+<u><strong>Limitation in use</strong></u>
 
 There are limitations in use as well. For example, current MT messages do not support card payment transactions. Also, there is no option for mandate creation for direct debit transactions.\
 Direct debit transaction work on the basis of mandates. For example, if you have an electricity bill that you need to pay each month, instead of actively paying it on each month, you set a debit mandate with your bank and service provider to automatically deduct the amount from your account each month. Such type of transactions are called direct debit and cannot be executed without previously received mandates. In current SWIFT MTs, there is no provision to create such mandates. It assumes that the mandate already exists when direct debit transactions are processed.
 
 Also exception and query handling options are very limited. There are only n95 and n96 messages, but exception handling requires more granular data to make it more effective and faster.
 
-<u>**Rigid Structure**</u>
+<u><strong>Rigid Structure</strong></u>
 
 The structure of MT messages is rigid for each message and cannot be altered depending on specific market or business requirements.\
 ISO 20022 MX messages address all these shortcomings and offer more.
@@ -727,7 +727,7 @@ It is designed in three layers. The top layer provides the key business processe
 
 ![Alt](other/images/module_10_2.png)
 
-<u>**Top Layer - Business Processes and Concepts **</u>
+<u><strong>Top Layer - Business Processes and Concepts </strong></u>
 
 the ISO 20022 methodology starts with the creation of the business model. To put simply, this is the definition of the activity or the business process. The business rules and the actors involved in that activity and the business information required in order for that activity to take place.\
 The business information is organized into business components containing business elements.
@@ -737,7 +737,7 @@ Each of these components have further details.
 
 ![Alt](other/images/module_10_3.png)
 
-<u>**Middle Layer - Logical Messages or Messages Models**</u>
+<u><strong>Middle Layer - Logical Messages or Messages Models</strong></u>
 
 Using these business concepts, ISO 20022 then defines logical messages or message orders, which is the middle layer.\
 A logical message is a description of all the information that is needed to perform a specific business activity independent of Syntax. It is composed of message components organized enough hierarchical structure.
@@ -746,7 +746,7 @@ A logical message is a description of all the information that is needed to perf
 
 ![Alt](other/images/module_10_4.png)
 
-<u>**Bottom Layer - Syntax**</u>
+<u><strong>Bottom Layer - Syntax</strong></u>
 
 The Syntax of the message comes last and forms the bottom layer.\
 Syntax is a physical representation of the logical message. The syntax is a format in which the information in a message is structured. Unless the reader understands a specific syntax, it will not be possible to understand the message content.
@@ -893,7 +893,7 @@ Let's begin with PAIN or payment initiation messages.
 
     ![Alt](other/images/module_12_3.png)
 
-<u>**Pain.002 - CustomerPaymentStatusReport**</u>
+<u><strong>Pain.002 - CustomerPaymentStatusReport</strong></u>
 
 ![Alt](other/images/module_12_4.png)
 
@@ -905,7 +905,7 @@ Let's begin with PAIN or payment initiation messages.
 
 - PAIN 002 can be used for both domestic and cross-border transactions.
 
-<u>**Pain.009 - CustomerPaymentStatusReport**</u>
+<u><strong>Pain.009 - CustomerPaymentStatusReport</strong></u>
 
 ![Alt](other/images/module_12_5.png)
 
@@ -942,7 +942,7 @@ PACS messages are used between two financial institutions.
 
 - The PACS 008 can contain one or more customer credit transfer instructions and can be used for both domestic and cross-border transactions.
 
-<u>**PACS 009 - FinancialInstitutionCreditTransfer**</u>
+<u><strong>PACS 009 - FinancialInstitutionCreditTransfer</strong></u>
 
 ![Alt](other/images/module_13_2.png)
 
@@ -964,7 +964,7 @@ Let's see that usage of PACS 009 cover message.
 
 - Agent C receives a payment and credits the account of agent D. Agent C produces an end-of-day account statement report. Agent C reconciles the covering funds and credit the account of the creditor and may optionally provide a notification.
 
-<u>**PACS 002 - FItoFIPaymentStatusReport**</u>
+<u><strong>PACS 002 - FItoFIPaymentStatusReport</strong></u>
 
 ![Alt](other/images/module_13_4.png)
 
@@ -980,7 +980,7 @@ Here are some various codes to denote various status.
 
 ![Alt](other/images/module_13_6.png)
 
-<u>**PACS 004 - PaymentReturn**</u>
+<u><strong>PACS 004 - PaymentReturn</strong></u>
 
 ![Alt](other/images/module_13_7.png)
 
