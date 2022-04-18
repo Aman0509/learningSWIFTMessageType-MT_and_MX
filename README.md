@@ -877,5 +877,90 @@ Let's begin with PAIN or payment initiation messages.
 
 ![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_12_6.png)
 
+### PACS(Payments Clearing and Settlement) and CAMT(Cash Management)
+
+PACS messages are used between two financial institutions.
+
+<u>**PACS 008 - FItoFICustomerCreditTransfer**</u>
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_13_1.png)
+
+- This message is the equivalent of a MT 103.
+
+- You can see here how a PACS 008 message replaces the MT 103 in a serial payment method.
+
+- First, debtor initiates a payment instruction to the debtor agent. Next, the debtor agent A initiates a serial payment towards the creditor agent D using Agent B and C as intermediaries. Next, Agent B processes the payment on agent C via the CSM. Then the CSM settles the payment between agent B and agent C and provides a settlement confirmation to agent B. Agent C processes the payment on agent D. Lastly, agent D credits account of the creditor and may optionally provide a notification, for example, notification of credit in addition to an account statement.
+
+- Note the two more messages:
+    - First one is PACS 002. This has the same function as PAIN 002, only it is used when both the parties are financial institutions.
+
+    - Next is the CAMT 054, which is the back to customer debit credit notification. It is the equivalent of MT 900 here.
+
+- The PACS 008 can contain one or more customer credit transfer instructions and can be used for both domestic and cross-border transactions.
+
+<u>**PACS 009 - FinancialInstitutionCreditTransfer**</u>
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_13_2.png)
+
+- PACS 009 is the equivalent to MT 202 message and just like it, PACS 009 can be of two types, PACS 009 core and PACS 009 cover.
+
+- Structure of the message is shown in above image.
+
+- Like all messages, it has the group header. The PACS 009 core contents only the credit transfer transaction information, whereas the PACS 009 cover just like MT 202 cover, contains an underlying customer credit transfer information too.
+
+Let's see that usage of PACS 009 cover message.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_13_3.png)
+
+- First, debtor initiates a payment instruction to the debtor agent.
+
+- Next, debtor agent A initiates a payment using the cover method to the creditor agent D. Simultaneously, debtor agent A initiates a covering payment to credit the account of agent D with their correspondent agent C.
+
+- Next, agent B processes the payment on agent C via the CSM. The CSM settles the payment of between agent B and agent C and provides a settlement confirmation to agent B.
+
+- Agent C receives a payment and credits the account of agent D. Agent C produces an end-of-day account statement report. Agent C reconciles the covering funds and credit the account of the creditor and may optionally provide a notification.
+
+<u>**PACS 002 - FItoFIPaymentStatusReport**</u>
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_13_4.png)
+
+Let's look into its use with the previous example.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_13_5.png)
+
+- When bank A sends a PACS 008 to bank B, bank B in return sends a PACS 002 to provide a status update ACTC (Accepted Technical Validation Successful) to agent A based upon a bilateral agreement.
+
+- Agent B provides a further status update ACSP(Accepted Settlement in Progress) to agent A based upon a bilateral agreement or a CAMT 054 for final confirmation.
+
+Here are some various codes to denote various status.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_13_6.png)
+
+<u>**PACS 004 - PaymentReturn**</u>
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_13_7.png)
+
+Let's understand with an example.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_13_8.png)
+
+- The debtor initiates a payment instruction to the debtor agent.
+
+- The payment moves through the payment chain and agent B credits the account of the creditor. But the creditor determines that they wish to return the payment because they are unable to apply and instructs their bank agent to return the payment together with the reason.
+
+- Agent B returns the payment to agent C using the payment return message or PACS 004, also including the return reason code.
+
+- The PACS 004 will contain the original UETR and details of the original message. For example, the debtor of the original PACS 008.
+
+Examples of written code are as follows.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_13_9.png)
+
+**Cash Management - CAMT Messages**
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_13_10.png)
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_13_11.png)
+
 ## References
 - [SWIFT Message Types - MT and MX ISO 20022 - An Overview (Udemy Course)](https://www.udemy.com/course/swift-message-types-in-banking/)
