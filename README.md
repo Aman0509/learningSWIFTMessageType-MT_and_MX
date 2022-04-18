@@ -809,5 +809,73 @@ What is challenging is the other way around, when a richer data loaded MX messag
 
 ![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_11_8.png)
 
+### PAIN (Payment Initiation Messages)
+
+Now that we have the background knowledge on MX messages, let's understand the most important messages.
+
+Here is an equivalence table of MT and MX messages.
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_12_1.png)
+
+- You can see that PAIN 001 or customer credit transfer initiation is the equivalent to MT 101 request to transfer.
+
+- PACS 008 or FI to FI customer credit transfer is equivalent to both MT 102 and MT 103.
+
+- PACS 009 is equivalent to MT 200, 201, 202 and 202 cover.
+
+- Similarly, CAMT 054 serves the purpose  of both MT 900 and 910 and CAMT 053 serves the purpose of MT 940 and 950 statements.
+
+So, you have noticed that a single type of a MX message is capable of covering the purposes of multiple MT messages. This is the proof of flexibility of use
+of MX messages that we discussed earlier.
+
+Let's begin with PAIN or payment initiation messages.
+
+<u>**Pain.001 - CustomerCreditTransferInitiation**</u>
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_12_2.png)
+
+- The Pain 001 message is customer credit transfer initiation. This is the MX equivalent of the MT 101 request for transfer message.
+
+- The PAIN 001 message is sent by the instructing party to the forwarding agent or debtor agent.
+
+- Like MT 101, it is used to request movement of funds from the debtor’s account to the creditor.
+
+- The message can contain one or more customer credit transfer instructions.
+
+- It can be used in a direct or a relay scenario.
+    - In a direct scenario, the message is sent directly to the debtor agent. The debtor itself is the account servicer of the debtor.
+
+    - In a relay scenario, the message is sent to a forwarding agent. The forwarding agent acts as a payment manager or funnel concentrating bank. It will in turn forward the message to the debtor agent.
+
+    ![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_12_3.png)
+
+<u>**Pain.002 - CustomerPaymentStatusReport**</u>
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_12_4.png)
+
+- This is a new addition. This message is sent by an instructed agent to the previous party in the payment chain where the previous party is a non-financial institution.
+
+- This type of message is used to inform this party about the positive or negative status of an instruction and mainly, informs whether the payment is pending or processed by that institution's back office.
+
+- Now, it may appear that the purpose of this status report is similar to SWIFT GPI, but it should not be confused with GPI. This status report is capable of providing very limited information about the status, whereas GPI provides an end to end tracking.
+
+- PAIN 002 can be used for both domestic and cross-border transactions.
+
+<u>**Pain.009 - CustomerPaymentStatusReport**</u>
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_12_5.png)
+
+- As we discussed earlier, MT messages do not have an option for mandated creation for direct debit transactions, PAIN 009 is the answer to that.
+
+- It is sent by the initiator of the request to his agent. The initiator can either be the debtor or the creditor.
+
+- The message is forwarded by the agent of the initiator to the agent of the counterpart.
+
+- This message is used to set up the instruction that allows the debtor agent to accept instructions from the creditor through the creditor agent to debit the account of the debtor.
+
+**Some messages related to PAIN 009 are:**
+
+![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_12_6.png)
+
 ## References
 - [SWIFT Message Types - MT and MX ISO 20022 - An Overview (Udemy Course)](https://www.udemy.com/course/swift-message-types-in-banking/)
