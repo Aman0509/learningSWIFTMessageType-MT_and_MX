@@ -57,7 +57,7 @@ Interbank Financial Telecommunication, or SWIFT, to build a common messaging sys
 
 <!--![Alt SWIFT - SWIFT Message Types - MT and MX ISO 20022 - An Overview](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/swift.png) -->
 
-<img src="https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/swift.png" />
+<img src="other/images/swift.png" />
 
 Slowly, the number of member banks grew, and today more than 11000 banks are part of SWIFT communicating with each other using its network called SWIFTNet.
 
