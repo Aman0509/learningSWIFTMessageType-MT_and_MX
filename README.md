@@ -349,7 +349,7 @@ to yellow bank with details of all transactions done at ABC's account. This help
 ![Alt](https://github.com/Aman0509/learningSWIFTMessageType-MT_and_MX/blob/main/other/images/module_4_6.png)
 
 Next, let's understand the use of MT 102 or multiple customer credit transfer.
-How it differs from MT 101?\
+How it differs from MT 101?
 - The first difference is unlike MT 101, this message always contains multiple payment instructions.
 - The second difference is the account debited here is not the customer's account, but the bank's own account held with another bank.
 
