@@ -1,5 +1,49 @@
 # SWIFT Message Types - MT and MX ISO 20022 - An Overview
 
+## Contents
+
+- Basic of Swift
+
+    - [SWIFT, SWIFTNet and SWIFT Code/BIC](#swift-swiftnet-and-swift-codebic)
+
+    - [SWIFT FIN and GPA Messages and MT Message Structure](#swift-fin-and-gpa-messages-and-mt-message-structure)
+
+    - [SWIFT Message Categories and Rules/ Guidelines of Messages](#swift-message-categories-and-rules-guidelines-of-messages)
+
+- Brief Overview of Payment System
+
+    - [What is Clearing, Settlement and Messaging?](#what-is-clearing-settlement-and-messaging)
+
+    - [Correspondent Accounts and RMA](#correspondent-accounts-and-rma)
+
+- [SWIFT MT Messages - Understanding fields and flows with examples](#swift-mt-messages---understanding-fields-and-flows-with-examples)
+
+    - [Category 1 Messages with MT 103 Serial and Cover methods](#category-1-messages-with-mt-103-serial-and-cover-methods)
+
+    - [Category 2 Messages](#category-2-messages)
+
+    - [Category 9 Messages](#category-9-messages)
+
+    - [SWIFT GPA Messages/ Possible Duplicate Emission(PDE/PDM)/ Message Retrieval](#swift-gpa-messages-possible-duplicate-emissionpdepdm-message-retrieval)
+
+- [SWIFT GPI and Other Latest Releases by SWIFT](#swift-gpi-and-other-latest-releases-by-swift)
+
+    - [SWIFT GPI (Global Payments Innovation)](#swift-gpi-global-payments-innovation)
+
+    - [ Latest - GPI Instant, Payment Pre-validation, Case Resolution, Stop and Recall](#latest)
+
+- SWIFT ISO 20022 MX messages
+
+    - [Need for MX Messages and the three layers of MX Messages](#need-for-mx-messages-and-the-three-layers-of-mx-messages)
+
+    - [MT to MX Messages - What are the changes?](#mt-to-mx-messages---what-are-the-changes)
+
+    - [PAIN (Payment Initiation Messages)](#pain-payment-initiation-messages)
+
+    - [PACS(Payments Clearing and Settlement) and CAMT(Cash Management)](#pacspayments-clearing-and-settlement-and-camtcash-management)
+
+- [References](#references)
+
 ## Basics of Swift
 
 ### SWIFT, SWIFTNet and SWIFT Code/BIC
@@ -150,7 +194,7 @@ Market practice rules, as the name suggests, are a set of rules which are usuall
 
 ## Brief Overview of Payment System
 
-### Brief Overview of Payment Systems
+### What is Clearing, Settlement and Messaging?
 
 We have got an overall idea of the background of SWIFT and the messages but before we can start understanding the SWIFT payment messages, we need to have a brief idea about one more concept, which is, how payments work.
 
